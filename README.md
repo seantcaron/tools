@@ -47,7 +47,7 @@ dpkg --get-selections | grep -v deinstall | cut -f 1 > purgepackages.list
 
 Generate random password strings.
 
-#### selections2manifest.go
+#### selections2manifest.pl
 
 Convert a list of packages in ```dpkg --get-selections``` format to a basic list of Package resources in a Puppet manifest.
 

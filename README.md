@@ -23,7 +23,7 @@ Dump SMART health status for all attached drives.
 
 #### dnsseq.go
 
-Automates the generation of long sequences of DNS records.
+Automates the generation of long sequences of DNS A-records and PTR-records.
 
 #### pkgsinrepo.pl
 
@@ -37,6 +37,12 @@ Find all drives that should be members of a given MD RAID array.
 
 Automatically purge a list of packages in Linux distributions that use apt/aptitude.
 
+Prep input with the following sequence of commands:
+
+```
+dpkg --get-selections | grep -v deinstall | cut -f 1 > purgepackages.list
+```
+
 #### pwgen.go
 
 Generate random password strings.
@@ -44,6 +50,12 @@ Generate random password strings.
 #### selections2manifest.go
 
 Convert a list of packages in ```dpkg --get-selections``` format to a basic list of Package resources in a Puppet manifest.
+
+Prep input using the following sequence of commands:
+
+```
+dpkg --get-selections | grep -v deinstall | cut -f 1 > input.selections
+```
 
 #### zerodrives.sh
 

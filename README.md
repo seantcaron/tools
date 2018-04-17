@@ -5,6 +5,10 @@ Sean Caron <scaron@umich.edu>
 
 A collection of useful systems administration tools and scripts too small to justify their own repository.
 
+#### addslurmusers.pl
+
+Create a shell script to add a list of users back to the SLURM accounting system given a dump of the output of ```sacctmgr show user``` from a previous SLURM installation.
+
 #### beacon.go
 
 Light error LEDs on drives in JBOD cabinets.
@@ -64,6 +68,10 @@ Build with:
 ```
 go build pwgen.go
 ```
+
+#### requeueheldslurm.pl
+
+Generate a shell script full of ```scontrol release``` commands to release all jobs held in the SLURM queue for all jobs stuck in job requeued in held state.
 
 #### selections2manifest.pl
 

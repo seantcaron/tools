@@ -9,6 +9,12 @@ A collection of useful systems administration tools and scripts too small to jus
 
 Light error LEDs on drives in JBOD cabinets.
 
+Build with:
+
+```
+go build beacon.go
+```
+
 #### beacon_off.sh
 
 Deactivate error LED on all attached JBOD drives.
@@ -24,6 +30,12 @@ Dump SMART health status for all attached drives.
 #### dnsseq.go
 
 Automates the generation of long sequences of DNS A-records and PTR-records.
+
+Build with:
+
+```
+go build dnsseq.go
+```
 
 #### pkgsinrepo.pl
 
@@ -46,6 +58,12 @@ dpkg --get-selections | grep -v deinstall | cut -f 1 > purgepackages.list
 #### pwgen.go
 
 Generate random password strings.
+
+Build with:
+
+```
+go build pwgen.go
+```
 
 #### selections2manifest.pl
 

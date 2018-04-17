@@ -35,7 +35,7 @@ Find all drives that should be members of a given MD RAID array.
 
 #### purgepackages.sh
 
-Automatically purge a list of packages in Linux distributions that use apt/aptitude.
+Automatically purge a list of packages in Linux distributions that use apt style package management.
 
 Prep input with the following sequence of commands:
 

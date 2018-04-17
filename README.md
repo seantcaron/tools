@@ -5,7 +5,7 @@ Sean Caron
 
 scaron@umich.edu
 
-A collection of useful tools and scripts too small to justify their own repository.
+A collection of useful systems administration tools and scripts too small to justify their own repository.
 
 #### beacon.go
 

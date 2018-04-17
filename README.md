@@ -27,7 +27,7 @@ Dump SMART health status for all attached drives.
 
 Automates the generation of long sequences of DNS records.
 
-#### inmanifest.pl
+#### pkgsinrepo.pl
 
 Checks presence-in-repository status of all Package resources in a Puppet manifest.
 

@@ -1,15 +1,13 @@
 tools
 -----
 
-Sean Caron
-
-scaron@umich.edu
+Sean Caron <scaron@umich.edu>
 
 A collection of useful systems administration tools and scripts too small to justify their own repository.
 
 #### beacon.go
 
-Light error LEDs on all drives in attached JBOD cabinets.
+Light error LEDs on drives in JBOD cabinets.
 
 #### beacon_off.sh
 

@@ -7,6 +7,8 @@
 
 open(INFILE, "<slurmusers");
 
+print "#!/bin/bash"
+
 while (<INFILE>) {
     $line = $_;
     chomp $line;

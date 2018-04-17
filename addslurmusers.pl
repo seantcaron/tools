@@ -7,7 +7,7 @@
 
 open(INFILE, "<slurmusers");
 
-print "#!/bin/bash"
+print "#!/bin/bash\n"
 
 while (<INFILE>) {
     $line = $_;

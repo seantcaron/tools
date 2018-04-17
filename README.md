@@ -37,7 +37,7 @@ Find all drives that should be members of a given MD RAID array.
 
 Automatically purge a list of packages in Linux distributions that use apt style package management.
 
-Prep input with the following sequence of commands:
+Input should be a file containing a list of packages, one package per line, prepped using a command similar to the following:
 
 ```
 dpkg --get-selections | grep -v deinstall | cut -f 1 > purgepackages.list
@@ -51,7 +51,7 @@ Generate random password strings.
 
 Convert a list of packages in ```dpkg --get-selections``` format to a basic list of Package resources in a Puppet manifest.
 
-Prep input using the following sequence of commands:
+Input should be a file containing a list of packages, one package per line, prepped using a command similar to the following:
 
 ```
 dpkg --get-selections | grep -v deinstall | cut -f 1 > input.selections

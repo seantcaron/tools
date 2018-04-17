@@ -71,7 +71,7 @@ go build pwgen.go
 
 #### requeueheldslurm.pl
 
-Generate a shell script full of ```scontrol release``` commands to release all jobs held in the SLURM queue for all jobs stuck in job requeued in held state.
+Release all jobs held in the SLURM queue for all jobs stuck in job requeued in held state.
 
 #### selections2manifest.pl
 

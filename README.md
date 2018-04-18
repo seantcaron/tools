@@ -71,7 +71,7 @@ go build pwgen.go
 
 #### requeueheldslurm.pl
 
-Generate a shell script to release all jobs held in the SLURM queue for all jobs stuck in job requeued in held state.
+Generate a shell script to release all jobs held in the SLURM queue stuck in job requeued in held state.
 
 #### selections2manifest.pl
 

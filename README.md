@@ -9,6 +9,10 @@ A collection of useful systems administration tools and scripts too small to jus
 
 Create a shell script to add a list of users back to the SLURM accounting system given a dump of the output of ```sacctmgr show user``` from a previous SLURM installation.
 
+#### afsmigrate.pl
+
+Given a list of AFS volumes, migrate them from source server and partition to destination server and partition.
+
 #### beacon.go
 
 Light error LEDs on drives in JBOD cabinets.

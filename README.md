@@ -33,7 +33,7 @@ Activate error LED on all attached JBOD drives.
 
 #### check_ldap_server.py
 
-Sentry script for slapd to ensure slapd is running, otherwise restart slapd.
+Watchdog script to ensure slapd is running, otherwise restart slapd.
 
 #### checksmartall.sh
 

@@ -17,6 +17,9 @@ var ( MINORBITS = uint(20)
 )
 
 func main() {
+    var pathToDrive string
+    var uname syscall.Utsname
+
     if (len(os.Args) != 3) {
         fmt.Printf("Usage: %s disk [on|off]\n", os.Args[0])
         os.Exit(1)
@@ -24,19 +27,31 @@ func main() {
 
     // Get major and minor number of specified disk
     stat := syscall.Stat_t{}
-    
+
     _ = syscall.Stat("/dev/" + os.Args[1], &stat)
 
     major := uint64((stat.Rdev >> 8) & 0xfff)
     minor := uint64((stat.Rdev & 0xff) | ((stat.Rdev >> 12) & 0xfff00))
 
+    // Get major Linux kernel version. We need this to determine the location of the
+    // fault LED control file
+    _ = syscall.Uname(&uname)
+
+    majorversion,_ := strconv.Atoi(string(uname.Release[0]))
+
     // Construct the path to the fault LED control file
-    pathToDrive := "/sys/dev/block/" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/block/" + os.Args[1] + "/device/enclosure*/fault"
+    if (majorversion >= 5) {
+        // Linux kernel 5.x and newer
+        pathToDrive = "/sys/dev/block" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/enclosure*/fault"
+    } else {
+        // Linux kernel 3.x and 4.x
+        pathToDrive = "/sys/dev/block/" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/block/" + os.Args[1] + "/device/enclosure*/fault"
+    }
 
     paths, _ := filepath.Glob(pathToDrive)
 
     if (paths == nil) {
-        fmt.Printf("Failed finding enclosure/fault in /sys/dev/block\n")
+        fmt.Printf("Failed finding fault LED control file:\n%s\n", pathToDrive)
         os.Exit(1)
     }
 

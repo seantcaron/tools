@@ -1,5 +1,5 @@
 #!/bin/bash
-for drive in /dev/sdc /dev/sd[a-z][a-z] ; do
+for drive in `lsscsi|tr -s ' '| cut -f 7 -d ' '` ; do
     ./beacon `basename $drive` off
 done
 

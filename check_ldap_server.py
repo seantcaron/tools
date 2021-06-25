@@ -8,7 +8,7 @@
 #
 
 # Requires packages: python-ldap
-import ldap, os, time
+import ldap, os, sys, time
 
 l = ldap.initialize('ldap://' + 'csgadmin.sph.umich.edu' + ':389')
 try:

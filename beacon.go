@@ -42,7 +42,7 @@ func main() {
     // Construct the path to the fault LED control file
     if (majorversion >= 5) {
         // Linux kernel 5.x and newer
-        pathToDrive = "/sys/dev/block" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/enclosure*/fault"
+        pathToDrive = "/sys/dev/block/" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/enclosure*/fault"
     } else {
         // Linux kernel 3.x and 4.x
         pathToDrive = "/sys/dev/block/" + strconv.FormatUint(major,10) + ":" + strconv.FormatUint(minor,10) + "/device/block/" + os.Args[1] + "/device/enclosure*/fault"

@@ -2,7 +2,7 @@
 
 #
 # Output will be of the format:
-# [device name] [SMART overall status] [raw read error rt] [reallocated sector ct] [reallocated event ct] [current pending] [offline uncorrectable] [udma crc error ct]
+# [device name] [array] [SMART overall status] [raw read error rt] [reallocated sector ct] [reallocated event ct] [current pending] [offline uncorrectable] [udma crc error ct]
 #
 
 for drive in `lsscsi|grep -v PERC|grep -v DVD|tr -s ' '| cut -f 7 -d ' '` ; do

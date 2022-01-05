@@ -5,7 +5,7 @@
 # [device name] [array] [SMART overall status] [raw read error rt] [reallocated sector ct] [reallocated event ct] [current pending] [offline uncorrectable] [udma crc error ct]
 #
 
-for drive in `lsscsi|grep -v PERC|grep -v DVD|tr -s ' '| cut -f 7 -d ' '` ; do
+for drive in `lsscsi|grep -v PERC|grep -V HP|grep -v DVD|tr -s ' '| cut -f 7 -d ' '` ; do
     # Member of md array
     if mdadm --examine $drive > /dev/null 2>&1; then
         { echo $drive | tr '\n' ' ';

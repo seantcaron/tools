@@ -35,9 +35,7 @@ for mount in $MOUNTS; do
       EXCLUDES="$EXCLUDES --exclude=`basename $object`"
     fi
   done
-
-  echo $EXCLUDES
-
+  
   printf "*** Disk utilization breakdown for $mount ***\n\n" >> $REPORT_FILE
 
   du -sh $EXCLUDES $mount/* | sort -rh | grep -v "^0" >> $REPORT_FILE

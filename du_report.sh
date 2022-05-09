@@ -3,23 +3,23 @@
 EMAIL_DEST="scaron@umich.edu"
 MOUNTS="/usr /var"
 
-HOST=`hostname`
-REPORT_FILE=`tempfile -p disku`
+HOST=`/bin/hostname`
+REPORT_FILE=`/bin/tempfile -p disku`
 
-MONTH=`date | cut -d " " -f 2`
-YEAR=`date | cut -d " " -f 7`
+MONTH=`/bin/date | /usr/bin/cut -d " " -f 2`
+YEAR=`/bin/date | /usr/bin/cut -d " " -f 7`
 
-printf "*** $MONTH $YEAR Disk Utilization Report for $HOST ***\n\n" >> $REPORT_FILE
+/usr/bin/printf "*** $MONTH $YEAR Disk Utilization Report for $HOST ***\n\n" >> $REPORT_FILE
 
-printf "*** Overall Picture ***\n\n" >> $REPORT_FILE
+/usr/bin/printf "*** Overall Picture ***\n\n" >> $REPORT_FILE
 
 # Print df header
-df -klh $MOUNTS | head -1 >> $REPORT_FILE
+/bin/df -klh $MOUNTS | /usr/bin/head -1 >> $REPORT_FILE
 
 # Print df output
-df -klh $MOUNTS | tail +2 | sort | uniq >> $REPORT_FILE
+/bin/df -klh $MOUNTS | /usr/bin/tail +2 | /urs/bin/sort | /usr/bin/uniq >> $REPORT_FILE
 
-printf "\n\n" >> $REPORT_FILE
+/usr/bin/printf "\n\n" >> $REPORT_FILE
 
 # Print detailed du output for each configured mount
 for mount in $MOUNTS; do
@@ -28,7 +28,7 @@ for mount in $MOUNTS; do
   # Exclude mountpoints because they do not compose utilization of the filesystem that
   #  we are currently reporting on
   for object in $mount/*; do
-    mountpoint -q $object > /dev/null
+    /bin/mountpoint -q $object > /dev/null
 
     # If the item is a mountpoint then add it to our list of excludes
     if [ $? == 0 ]; then
@@ -36,14 +36,14 @@ for mount in $MOUNTS; do
     fi
   done
   
-  printf "*** Disk utilization breakdown for $mount ***\n\n" >> $REPORT_FILE
+  /usr/bin/printf "*** Disk utilization breakdown for $mount ***\n\n" >> $REPORT_FILE
 
-  du -sh $EXCLUDES $mount/* | sort -rh | grep -v "^0" >> $REPORT_FILE
+  /usr/bin/du -sh $EXCLUDES $mount/* | /usr/bin/sort -rh | /bin/grep -v "^0" >> $REPORT_FILE
 
-  printf "\n\n" >> $REPORT_FILE
+  /usr/bin/printf "\n\n" >> $REPORT_FILE
 done
 
 # Send report via email to configured recipients
-cat $REPORT_FILE | mail -s "$month $year Disk Utilization Report for $HOST" -c $EMAIL_DEST
+/bin/cat $REPORT_FILE | /usr/bin/mail -s "$month $year Disk Utilization Report for $HOST" -c $EMAIL_DEST
 
-rm $REPORT_FILE
+/bin/rm $REPORT_FILE

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-EMAIL_DEST="scaron@umich.edu"
+ADMIN_EMAIL="scaron@umich.edu"
+OWNER_EMAIL="scaron@umich.edu"
 MOUNTS="/usr /var"
 
 HOST=`/bin/hostname`
@@ -44,6 +45,6 @@ for mount in $MOUNTS; do
 done
 
 # Send report via email to configured recipients
-/bin/cat $REPORT_FILE | /usr/bin/mail -s "$month $year Disk Utilization Report for $HOST" -c $EMAIL_DEST
+/bin/cat $REPORT_FILE | /usr/bin/mail -s "$month $year Disk Utilization Report for $HOST" -c $OWNER_EMAIL $ADMIN_EMAIL
 
 /bin/rm $REPORT_FILE

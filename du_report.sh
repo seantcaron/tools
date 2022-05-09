@@ -17,7 +17,7 @@ YEAR=`/bin/date | /usr/bin/cut -d " " -f 7`
 /bin/df -klh $MOUNTS | /usr/bin/head -1 >> $REPORT_FILE
 
 # Print df output
-/bin/df -klh $MOUNTS | /usr/bin/tail +2 | /urs/bin/sort | /usr/bin/uniq >> $REPORT_FILE
+/bin/df -klh $MOUNTS | /usr/bin/tail +2 | /usr/bin/sort | /usr/bin/uniq >> $REPORT_FILE
 
 /usr/bin/printf "\n\n" >> $REPORT_FILE
 

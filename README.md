@@ -49,6 +49,10 @@ Build with:
 go build dnsseq.go
 ```
 
+#### du_report.sh
+
+Use this as a cron job to send monthly disk utilization reports for configured volumes to a configured user.
+
 #### pkgsinrepo.pl
 
 Checks presence-in-repository status of all Package resources in a Puppet manifest.

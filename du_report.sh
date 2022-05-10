@@ -37,7 +37,7 @@ for mount in $MOUNTS; do
     fi
   done
   
-  /usr/bin/printf "*** Disk utilization breakdown for $mount ***\n\n" >> $REPORT_FILE
+  /usr/bin/printf "*** Disk Utilization Breakdown for $mount ***\n\n" >> $REPORT_FILE
 
   /usr/bin/du -sh $EXCLUDES $mount/* | /usr/bin/sort -rh | /bin/grep -v "^0" >> $REPORT_FILE
 

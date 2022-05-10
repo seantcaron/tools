@@ -45,6 +45,6 @@ for mount in $MOUNTS; do
 done
 
 # Send report via email to configured recipients
-/bin/cat $REPORT_FILE | /usr/bin/mail -s "$month $year Disk Utilization Report for $HOST" -c $OWNER_EMAIL $ADMIN_EMAIL
+/bin/cat $REPORT_FILE | /usr/bin/mail -s "$MONTH $YEAR Disk Utilization Report for $HOST" -c $OWNER_EMAIL $ADMIN_EMAIL
 
 /bin/rm $REPORT_FILE

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 #
 # Check to see if OpenLDAP is running. If not, restart it and reset process limits.
@@ -7,7 +7,10 @@
 # *       *       *       *       *       /root/check_ldap_server.py
 #
 
-# Requires packages: python-ldap
+#
+# Requires packages: python3-ldap
+#
+
 import ldap, os, sys, time
 
 l = ldap.initialize('ldap://' + 'csgadmin.sph.umich.edu' + ':389')

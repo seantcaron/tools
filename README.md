@@ -61,6 +61,10 @@ Checks presence-in-repository status of all Package resources in a Puppet manife
 
 Find all drives that should be members of a given MD RAID array.
 
+#### plvc.py
+
+Compare version of installed Python package reported by pip with a version number specified on the command line.
+
 #### purgepackages.sh
 
 Automatically purge a list of packages in Linux distributions that use apt style package management.

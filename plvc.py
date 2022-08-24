@@ -18,9 +18,9 @@ parser = argparse.ArgumentParser(description='Compare installed Python library v
 parser.add_argument('library',help='Library name')
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument('-gt',metavar='VERSION',help='Greater than VERSION')
-group.add_argument('-gte',metavar='VERSION',help='Greater than or equal to VERSION')
+group.add_argument('-ge',metavar='VERSION',help='Greater than or equal to VERSION')
 group.add_argument('-lt',metavar='VERSION',help='Less than VERSION')
-group.add_argument('-lte',metavar='VERSION',help='Less than or equal to VERSION')
+group.add_argument('-le',metavar='VERSION',help='Less than or equal to VERSION')
 group.add_argument('-eq',metavar='VERSION',help='Equal to VERSION')
 group.add_argument('-ne',metavar='VERSION',help='Not equal to VERSION')
 
@@ -53,9 +53,9 @@ if args.gt:
         sys.exit(0)
     else:
         sys.exit(1)
-elif args.gte:
+elif args.ge:
     # Check if installed version greater than or equal to specified version
-    if installed_ver[1] > args.gte or installed_ver[1] == args.gte:
+    if installed_ver[1] > args.ge or installed_ver[1] == args.ge:
         sys.exit(0)
     else:
         sys.exit(1)
@@ -65,9 +65,9 @@ elif args.lt:
         sys.exit(0)
     else:
         sys.exit(1)
-elif args.lte:
+elif args.le:
     # Check if installed version less than or equal to specified version
-    if installed_ver[1] < args.lte or installed_ver[1] == args.lte:
+    if installed_ver[1] < args.le or installed_ver[1] == args.le:
         sys.exit(0)
     else:
         sys.exit(1)

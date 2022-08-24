@@ -63,7 +63,7 @@ Find all drives that should be members of a given MD RAID array.
 
 #### plvc.py
 
-Compare version of installed Python package reported by pip with a version number specified on the command line.
+Compare version of installed Python library reported by pip with a version number specified on the command line.
 
 #### purgepackages.sh
 

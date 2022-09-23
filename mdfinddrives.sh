@@ -10,7 +10,13 @@ i=0
 array=`grep $1 /etc/mdadm/mdadm.conf | cut -d " " -f 2 | cut -d "/" -f 4`
 cmd="mdadm --assemble --force /dev/md$array "
 
-for drive in /dev/sd[b-z] /dev/sd[a-z][a-z] ; do
+IFS=$'\n'
+
+for line in `/usr/bin/lsscsi | /bin/grep /dev/ | /bin/grep -Ev 'PERC|Dell|DELL|HP|LSI|DVD|Virtual|enclosu'`; do
+    # Number of fields can vary so be sure to always grab the last possible field (device name)
+    field_ct=`echo $line | /usr/bin/tr -s ' ' | /usr/bin/awk -F ' ' '{print NF; exit}'`
+    drive=`echo $line | /usr/bin/tr -s ' ' | /usr/bin/cut -f $field_ct -d ' '`
+    
     mdadm --examine $drive | grep $1 &> /dev/null
 
     if [ $? == 0 ]; then

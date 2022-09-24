@@ -39,6 +39,10 @@ Watchdog script to ensure slapd is running, otherwise restart slapd.
 
 Dump SMART health status for all attached drives.
 
+#### checksmartdetailed.sh
+
+Dump detailed SMART health status for all attached drives. 
+
 #### dnsseq.go
 
 Automates the generation of long sequences of DNS A-records and PTR-records.

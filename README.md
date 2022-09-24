@@ -31,6 +31,10 @@ Deactivate error LED on all attached JBOD drives.
 
 Activate error LED on all attached JBOD drives.
 
+#### blockddos.sh
+
+Identify and block subnets performing trivial DDoS attacks on a targeted service.
+
 #### check_ldap_server.py
 
 Watchdog script to ensure slapd is running, otherwise restart slapd.

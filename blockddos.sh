@@ -12,17 +12,23 @@
 
 # Check command line arguments
 if [ -z "$1" ]; then
-    echo "Usage: $0 [port]"
+    echo "Usage: $0 [port] [country]"
     exit
 fi
 
 port=$1
+country=$2
 tempfile=`tempfile`
 
 # Identify IPs connecting to the targeted service
 for ip in `netstat -an | grep $port | grep -v LISTEN | tr -s ' ' | cut -d ' ' -f 5 | cut -d ':' -f 1 | sort`; do
-    # Use whois to dereference these to the subnets to which they belong
-    whois $ip | grep -v ^mnt-route | grep ^route | tr -s ' ' | cut -d ' ' -f 2 >> $tempfile
+    whois $ip | grep ^country | grep "$country 2>&1" > /dev/null
+    
+    # If IP block matches flagged country then add it to a list of subnets to block
+    if [ $? == 0 ]; then
+        # Use whois to dereference these to the subnets to which they belong
+        whois $ip | grep -v ^mnt-route | grep ^route | tr -s ' ' | cut -d ' ' -f 2 >> $tempfile
+    fi
 done
 
 # Block each problem subnet using iptables

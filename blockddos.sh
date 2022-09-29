@@ -33,7 +33,11 @@ done
 
 # Block each problem subnet using iptables
 for subnet in `cat $tempfile | uniq`; do
-    iptables -A INPUT -s $subnet -j DROP
+    iptables -L | grep $subnet 2>&1 > /dev/null
+    
+    if [ $? != 0 ]; then
+        iptables -A INPUT -s $subnet -j DROP
+    fi
 done
 
 rm $tempfile

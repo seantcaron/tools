@@ -11,7 +11,7 @@
 # Run this output through uniq and then block each result with iptables
 
 # Check command line arguments
-if [ -z "$1" ]; then
+if [ -z "$1" ] || [ -z "$2" ]; then
     echo "Usage: $0 [port] [country]"
     exit
 fi

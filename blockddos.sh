@@ -22,7 +22,7 @@ tempfile=`tempfile`
 
 # Identify IPs connecting to the targeted service
 for ip in `netstat -an | grep $port | grep -v LISTEN | tr -s ' ' | cut -d ' ' -f 5 | cut -d ':' -f 1 | sort`; do
-    whois $ip | grep ^country | grep "$country" 2>&1 > /dev/null
+    whois $ip | grep ^country | grep --ignore-case "$country" 2>&1 > /dev/null
     
     # If IP block matches flagged country then add it to a list of subnets to block
     if [ $? == 0 ]; then

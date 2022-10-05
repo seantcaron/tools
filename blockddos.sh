@@ -3,6 +3,7 @@
 # Identify and block subnets targeting a specific service with a trivial DDoS attack
 # Arguments:
 #    port: TCP port number of targeted service
+#    country: Whois country code of subnets to block
 
 # Find problem IPs with:
 #  netstat -an | grep <PORT> | tr -s ' ' | cut -d ' ' -f 5 | cut -d ':' -f 1 | sort

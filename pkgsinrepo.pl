@@ -43,7 +43,7 @@ while (<INFILE>) {
 
         # At this point, we should have a raw package name which we'll convert to
         #  a URI
-	$uri = "http://packages.ubuntu.com/bionic/" . $pkgname;
+	$uri = "http://packages.ubuntu.com/focal/" . $pkgname;
 
         # Now we assemble that into a request and go fetch it
         $req = HTTP::Request->new(GET => $uri);

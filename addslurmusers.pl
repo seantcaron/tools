@@ -13,14 +13,14 @@ while (<INFILE>) {
 
     ($user, $defacct, $adminlev) = split(" ", $line);
 
-    print "Processing user " . $user . "\n";
-
     if ( $adminlev eq "Administ+" ) {
-        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal adminlevel=admin");
+        print "Processing admin user " . $user . " with account " . $defacct . "\n";
+        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=" . $defacct . " defaultaccount=" . $defacct . " qoslevel=normal defaultqos=normal adminlevel=admin");
     }
 
     else {
-        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal");
+        print "Processing user " . $user . " with account " . $defacct . "\n";
+        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=" . $defacct . " defaultaccount=" . $defacct . " qoslevel=normal defaultqos=normal");
     }
 }
 

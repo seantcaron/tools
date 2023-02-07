@@ -1,13 +1,8 @@
 #!/usr/bin/perl
 
-# Reqeue SLURM jobs that are held in requeued state
+# Release all SLURM jobs that are held in requeued state
 
-# Prep input with:
-#  squeue | grep requeued > slurmjobs
-
-open(INFILE, "<slurmjobs");
-
-print "#!/bin/bash\n";
+open(INFILE, '-|', '/usr/cluster/bin/squeue|grep requeued') or die $!;
 
 while (<INFILE>) {
     $line = $_;
@@ -15,10 +10,10 @@ while (<INFILE>) {
 
     ($jobid, $partition, $name, $user, $state, $time, $nodes, $nodelist) = split(" ", $line);
 
-    print "echo Releasing job " . $jobid . "\n";
-    print "/usr/cluster/bin/scontrol release " . $jobid . "\n";
-    print "sleep 1\n";
+    print "Releasing job " . $jobid . "\n";
+    system("/usr/cluster/bin/scontrol release " . $jobid);
+
+    sleep(1);
 }
 
 close(INFILE);
-

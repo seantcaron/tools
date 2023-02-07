@@ -7,22 +7,21 @@
 
 open(INFILE, "<slurmusers");
 
-print "#!/bin/bash\n"
-
 while (<INFILE>) {
     $line = $_;
     chomp $line;
 
     ($user, $defacct, $adminlev) = split(" ", $line);
 
+    print "Processing user " . $user . "\n";
+
     if ( $adminlev eq "Administ+" ) {
-        print "/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal adminlevel=admin" . "\n";
+        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal adminlevel=admin");
     }
 
     else {
-        print "/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal" . "\n";
+        system("/usr/cluster/bin/sacctmgr create user " . $user . " account=csg defaultaccount=csg qoslevel=normal defaultqos=normal");
     }
 }
 
 close(INFILE);
-

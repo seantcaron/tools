@@ -7,7 +7,7 @@ A collection of useful systems administration tools and scripts too small to jus
 
 #### addslurmusers.pl
 
-Create a shell script to add a list of users back to the SLURM accounting system given a dump of the output of ```sacctmgr show user``` from a previous SLURM installation.
+Add a list of users back to the Slurm accounting system given a dump of the output of ```sacctmgr show user``` from a previous Slurm installation.
 
 #### afsmigrate.pl
 

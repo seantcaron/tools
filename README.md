@@ -103,7 +103,7 @@ Drop this into cgi-bin to show what SSO is reporting for $REMOTE_USER.
 
 #### requeueheldslurm.pl
 
-Generate a shell script to release all jobs held in the SLURM queue stuck in job requeued in held state.
+Release all jobs held in the Slurm queue stuck in launch failed requeued held state.
 
 #### selections2manifest.pl
 

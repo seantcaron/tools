@@ -47,6 +47,10 @@ Dump SMART health status for all attached drives.
 
 Dump detailed SMART health status for all attached drives. 
 
+#### dedupe.py
+
+Deduplicate lines in a text file
+
 #### dnsseq.go
 
 Automates the generation of long sequences of DNS A-records and PTR-records.

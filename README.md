@@ -73,6 +73,10 @@ Checks presence-in-repository status of all Package resources in a Puppet manife
 
 Find all drives that should be members of a given MD RAID array.
 
+#### mdfindunused.sh
+
+Find all drives that are not a member of any MD RAID array.
+
 #### mongobackup.sh
 
 Simple MongoDB backup script with rotation to be used as a cron job.

@@ -7,8 +7,16 @@ MOUNTS="/usr /var"
 HOST=`/bin/hostname`
 REPORT_FILE=`/bin/tempfile -p disku`
 
-MONTH=`/bin/date | /usr/bin/cut -d " " -f 2`
-YEAR=`/bin/date | /usr/bin/cut -d " " -f 7`
+# Handle different date output formats in different versions of coreutils
+COREUTILS_VER=`/bin/date --version | /usr/bin/head -1 | /usr/bin/cut -d " " -f 4`
+
+if (( $(echo "$COREUTILS_VER >= 8.30" | /usr/bin/bc -l) )); then
+  MONTH=`/bin/date | /usr/bin/cut -d " " -f 3`
+  YEAR=`/bin/date | /usr/bin/cut -d " " -f 4`
+else
+  MONTH=`/bin/date | /usr/bin/cut -d " " -f 2`
+  YEAR=`/bin/date | /usr/bin/cut -d " " -f 7`
+fi
 
 /usr/bin/printf "*** $MONTH $YEAR Disk Utilization Report for $HOST ***\n\n" >> $REPORT_FILE
 

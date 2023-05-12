@@ -13,6 +13,10 @@ Add a list of users back to the Slurm accounting system given a dump of the outp
 
 Given a list of AFS volumes, migrate them from source server and partition to destination server and partition.
 
+#### backup_gitlab.sh
+
+Wraps up all steps required to perform a full Gitlab backup to a configured destination.
+
 #### beacon.go
 
 Light error LEDs on drives in JBOD cabinets.

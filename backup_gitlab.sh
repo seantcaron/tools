@@ -26,7 +26,6 @@ bk_name=${bk_host}_${bk_date}
 gitlab_backup_file=/var/opt/gitlab/backups/${bk_name}_gitlab_backup.tar
 
 # Run the Gitlab /etc/gitlab backup
-
 gitlab_etc_backup_file=/tmp/${bk_name}_gitlab_etc_backup.tar
 /bin/tar -c -p -f $gitlab_etc_backup_file /etc/gitlab >/dev/null 2>&1
 

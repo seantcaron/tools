@@ -30,9 +30,9 @@ gitlab_etc_backup_file=/tmp/${bk_name}_gitlab_etc_backup.tar
 /bin/tar -c -p -f $gitlab_etc_backup_file /etc/gitlab >/dev/null 2>&1
 
 # Copy data to the backup destination
-mkdir -p $bk_dest_dir
-cp $gitlab_backup_file $bk_dest_dir
-cp $gitlab_etc_backup_file $bk_dest_dir
+/bin/mkdir -p $bk_dest_dir
+/bin/cp $gitlab_backup_file $bk_dest_dir
+/bin/cp $gitlab_etc_backup_file $bk_dest_dir
 
 # Clean up
 /bin/rm -rf $gitlab_backup_file

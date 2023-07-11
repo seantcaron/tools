@@ -69,6 +69,10 @@ go build dnsseq.go
 
 Use this as a cron job to send monthly disk utilization reports for configured volumes to a configured user.
 
+#### install.R
+
+Install large numbers of R packages from a list.
+
 #### pkgsinrepo.pl
 
 Checks presence-in-repository status of all Package resources in a Puppet manifest.

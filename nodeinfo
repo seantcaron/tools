@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#
+# Call this from a Slurm job script to receive a report in the job log with the
+# specifications of the node on which the job runs.
+#
+
+hostname=`hostname`
+make=`cat /sys/devices/virtual/dmi/id/sys_vendor`
+model=`cat /sys/devices/virtual/dmi/id/product_name`
+cputype=`cat /proc/cpuinfo | grep "model name" | tail -1 | cut -d ":" -f 2`
+corecount=`cat /proc/cpuinfo | grep "model name" | wc | tr -s " " | sed "s/^[ \t]*//" | cut -d " " -f 1`
+physicalmem=`cat /proc/meminfo | grep MemTotal | tr -s " " | cut -d " " -f 2`
+
+echo "*** BEGIN NODE INFORMATION ***"
+
+echo Node name: $hostname
+echo Node type: $make $model
+echo CPU and clock rate: $cputype
+echo Core count: $corecount
+echo Physical memory $physicalmem kB
+
+echo "*** END NODE INFORMATION ***"

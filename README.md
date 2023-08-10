@@ -73,6 +73,10 @@ Use this as a cron job to send monthly disk utilization reports for configured v
 
 Install large numbers of R packages from a list.
 
+#### nodeinfo
+
+Add this to a Slurm job script to print some node hardware information to the job log for profiling and benchmarking purposes.
+
 #### pkgsinrepo.pl
 
 Checks presence-in-repository status of all Package resources in a Puppet manifest.

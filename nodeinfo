@@ -19,6 +19,6 @@ echo Node name: $hostname
 echo Node type: $make $model
 echo CPU and clock rate: $cputype
 echo Core count: $corecount
-echo Physical memory $gphysicalmem GB
+echo Physical memory: $gphysicalmem GB
 
 echo "*** END NODE INFORMATION ***"

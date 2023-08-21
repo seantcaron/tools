@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+
+# Requires packages: python3-ldap
+import sys,os,time,ldap,configparser
+
+campus_ldap_host = 'ldap.umich.edu'
+campus_ldap_basedn = 'ou=People,dc=umich,dc=edu'
+
+if (len(sys.argv) != 2):
+  print('Usage: ' + sys.argv[0] + ' [uniqname]')
+  sys.exit(1)
+
+# Uniqname to do a query against
+uniqname = sys.argv[1]
+
+l = ldap.initialize('ldap://' + campus_ldap_host + ':389')
+l.protocol_version = ldap.VERSION3
+baseDN = campus_ldap_basedn
+searchScope = ldap.SCOPE_SUBTREE
+retrieveAttributes = ["uidNumber"]
+searchFilter = "uid=" + uniqname
+ldap_result_id = l.search(baseDN, searchScope, searchFilter, retrieveAttributes)
+res_set = []
+while 1:
+    result_type, result_data = l.result(ldap_result_id, 0)
+    if (result_data == []):
+        break
+    else:
+        if result_type == ldap.RES_SEARCH_ENTRY:
+            res_set.append(result_data)
+
+if (res_set == []):
+    print('Uniqname ' + uniqname + ' not found')
+    sys.exit(0)
+
+# Extract uidNumber reported by ITCS LDAP.
+dn, results = res_set[0][0]
+
+uidNumber = results['uidNumber'][0].decode()
+
+print('uidNumber: ' + uidNumber)

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # Requires packages: python3-ldap
-import sys,os,time,ldap,configparser
+import sys,os,time,ldap
 
 campus_ldap_host = 'ldap.umich.edu'
 campus_ldap_basedn = 'ou=People,dc=umich,dc=edu'

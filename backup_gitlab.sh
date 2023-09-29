@@ -1,5 +1,18 @@
 #!/bin/bash
 
+export GOOGLE_APPLICATION_CREDENTIALS="/root/csg-cloud-inf-backups-13e21a1551fd.json"
+
+gcloud auth activate-service-account --key-file /root/csg-cloud-inf-backups-13e21a1551fd.json
+root@git1:~/cron# vi backup_gitlab.sh
+root@git1:~/cron# which gcloud
+/usr/bin/gcloud
+root@git1:~/cron# vi backup_gitlab.sh
+root@git1:~/cron# which gcloud
+/usr/bin/gcloud
+root@git1:~/cron# vi backup_gitlab.sh
+root@git1:~/cron# cat backup_gitlab.sh
+#!/bin/bash
+
 #
 # Bundle together a Gitlab backup, a Gitlab /etc/gitlab backup and copying the files off to a
 #  remote destination.
@@ -7,6 +20,8 @@
 # Run once weekly on Sunday at midnight by inserting the following into crontab for root:
 #  0 0 * * 0 /root/cron/backup_gitlab.sh
 #
+
+export GOOGLE_APPLICATION_CREDENTIALS="/root/MY-GOOGLE-KEYFILE.json"
 
 # Our hostname
 bk_host=`/bin/hostname`
@@ -34,6 +49,11 @@ gitlab_etc_backup_file=/tmp/${bk_name}_gitlab_etc_backup.tar
 /bin/cp $gitlab_backup_file $bk_dest_dir
 /bin/cp $gitlab_etc_backup_file $bk_dest_dir
 
+# Make another copy of the data to the cloud
+/usr/bin/gcloud auth activate-service-account --key-file /root/MY-GOOGLE-KEYFILE.json
+/usr/bin/gsutil cp -r $bk_dest_dir gs://git1-backups
+
 # Clean up
 /bin/rm -rf $gitlab_backup_file
 /bin/rm -rf $gitlab_etc_backup_file
+

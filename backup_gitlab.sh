@@ -1,18 +1,5 @@
 #!/bin/bash
 
-export GOOGLE_APPLICATION_CREDENTIALS="/root/csg-cloud-inf-backups-13e21a1551fd.json"
-
-gcloud auth activate-service-account --key-file /root/csg-cloud-inf-backups-13e21a1551fd.json
-root@git1:~/cron# vi backup_gitlab.sh
-root@git1:~/cron# which gcloud
-/usr/bin/gcloud
-root@git1:~/cron# vi backup_gitlab.sh
-root@git1:~/cron# which gcloud
-/usr/bin/gcloud
-root@git1:~/cron# vi backup_gitlab.sh
-root@git1:~/cron# cat backup_gitlab.sh
-#!/bin/bash
-
 #
 # Bundle together a Gitlab backup, a Gitlab /etc/gitlab backup and copying the files off to a
 #  remote destination.

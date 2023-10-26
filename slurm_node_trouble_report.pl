@@ -3,13 +3,15 @@
 #
 # Insert this in cron to send an email report of node trouble for Slurm workers
 #
+# Requires: libmime-lite-perl
+#
 # Run once daily at midnight by inserting the following into crontab for root:
 #  0 0 * * * /root/cron/backup_gitlab.sh
 #
 #
 
 use Sys::Hostname;
-use Net::SMTP;
+use MIME::Lite;
 
 my @drain_nodes;
 my @down_nodes;
@@ -51,31 +53,30 @@ while (<INFILE>) {
     }
 }
 
-# Send the report email
-$smtp = Net::SMTP->new("localhost");
-
-$smtp->mail("do-not-reply\@" . $fqdn);
-$smtp->recipient($recipient);
-
-$smtp->data();
-$smtp->datasend("From: do-not-reply\@" . $fqdn . "\n");
-$smtp->datasend("To: " . $recipient . "\n");
-$smtp->datasend("Subject: Slurm node trouble report for " . $datestring . "\n");
-$smtp->datasend("\n");
-$smtp->datasend("*** Slurm node trouble report for " . $datestring . " ***\n\n");
-$smtp->datasend("*** Nodes in DOWN state ***\n\n");
+# Prepare report content
+my $content = "<h2>Slurm node trouble report for " . $datestring . "</h2><p>";
+$content = $content . "<h3>Nodes in DOWN state</h3><p>";
 
 foreach $n (@down_nodes) {
-    $smtp->datasend($n . "\n");
+    $content = $content . "<tt>" . $n . "</tt><br>";
 }
 
-$smtp->datasend("\n*** Nodes in DRAIN state ***\n\n");
+$content = $content . "<p><h3>Nodes in DRAIN state</h3><p>";
 
 foreach $o (@drain_nodes) {
-    $smtp->datasend($o . "\n");
+    $content = $content . "<tt>" . $o . "</tt><br>";
 }
 
-$smtp->dataend();
-$smtp->quit;
+# Send the report email
+my $msg = MIME::Lite->new
+(
+Subject => "Slurm node trouble report for " . $datestring,
+From    => "do-not-reply\@" . $fqdn,
+To      => $recipient,
+Type    => 'text/html',
+Data    => $content
+);
+
+$msg->send();
 
 close(INFILE);

@@ -6,7 +6,7 @@
 # Requires: libmime-lite-perl
 #
 # Run once daily at midnight by inserting the following into crontab for root:
-#  0 0 * * * /root/cron/backup_gitlab.sh
+#  0 0 * * * /root/cron/slurm_trouble_report.pl
 #
 #
 

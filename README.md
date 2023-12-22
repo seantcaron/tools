@@ -114,6 +114,9 @@ Input should be a file containing a list of packages, one package per line, prep
 ```
 dpkg --get-selections | grep -v deinstall | cut -f 1 > purgepackages.list
 ```
+#### purge_old_globus.pl
+
+Quick and dirty script to clean up old Globus Connect Server v4 packages on systems that have been migrated to v5.
 
 #### pwgen.go
 

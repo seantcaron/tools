@@ -43,6 +43,10 @@ Activate error LED on all attached JBOD drives.
 
 Identify and block subnets performing trivial DDoS attacks on a targeted service.
 
+#### checkarray
+
+Modified version of the Linux md RAID checkarray script that permits limiting checks to only even or odd arrays.
+
 #### check_ldap_server.py
 
 Watchdog script to ensure slapd is running, otherwise restart slapd.

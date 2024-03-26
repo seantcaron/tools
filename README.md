@@ -77,6 +77,10 @@ go build dnsseq.go
 
 Use this as a cron job to send monthly disk utilization reports for configured volumes to a configured user.
 
+#### ganesha_watchdog.sh
+
+Restart Ganesha NFS server if log entries imply that it may be hung.
+
 #### getcampusuid
 
 Use this to get the UID number associated with a U-M campus uniqname.
